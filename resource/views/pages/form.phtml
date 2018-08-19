@@ -1,0 +1,71 @@
+<div class="col-sm-12 col-md-12 col-lg-12 mt-3">
+    <div class="panel panel-headline">
+        <div class="panel-heading">
+            <?php  if(isset($error)):?>
+                <div class="alert alert-danger"><span class="mr-3" id="basic-addon1"><i class="fa fa-exclamation-circle"></i>  <?= $error ?></div>
+            <?php endif; ?>
+
+            <?php  if(isset($alert)):?>
+                <div class="alert alert-warning"><span class="mr-3" id="basic-addon1"><i class="fa fa-exclamation-triangle"></i></span><?= $alert ?></div>
+            <?php endif; ?>
+
+            <h3 class="panel-title">Calcular Dívida</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <form method="post" action="<?= PATH?>/calc"class="form-auth-small">
+                        <div class="form-group">
+                            <label for="data">Data do vencimento</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-calendar"></i></span>
+                                </div>
+                                <input type="date" name="data" value="<?php if(isset($dataVencimento)) echo $dataVencimento; ?>" class="form-control" placeholder="Data de vencimento" aria-label="Data de Vencimento" aria-describedby="basic-addon1" maxlength="8" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="data">Valor da parcela</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fa fa-dollar-sign"></i></span>
+                                </div>
+                                <input type="text" name="valor" value="<?php if(isset($valorParcela)) echo $valorParcela; ?>"class="form-control" placeholder="Valor da Parcela (Ex: 350.5)" aria-label="Valor da Parcela" aria-describedby="basic-addon1" required>
+                            </div>
+                        </div>
+
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-info">Calcular</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- dados na tabela-->
+    <?php  if(isset($dados)):?>
+    <div class="panel panel-headline">
+        <div class="panel-heading">
+            <h3 class="panel-title">Resultado</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Quantidade de dias</th><th>Valor dos juros ou desconto</th><th>Valor atualizado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><?= $quantidadeDias ?></td><td>R$ <?= $valorJurosDesconto ?></td><td>R$ <?= $valorParcelaAtualizado ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+</div>
